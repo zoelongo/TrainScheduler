@@ -1,28 +1,69 @@
 body {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Yeon Sung', cursive;
+    background-image: url("https://i.pinimg.com/originals/b1/e3/2d/b1e32dcd40d8650cc5798f6f2cfc5b07.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
+.table {
+    max-width: 70%;
+    margin: 0 auto;
     color: #7A3E48;
-    font-weight: bolder;
-    background-image: url("https://i.pinimg.com/originals/d7/38/77/d7387750387ba49908693d52051064b2.jpg");
+    border: 5px solid #7A3E48;
+    background: linear-gradient(to bottom right, #F49134, #FFB341);
+}
+
+tr:nth-child(+2) {
+    background:#F49134;
+    margin: 10px;
+}
+
+form {
+    margin: 0 auto;
+    max-width: 70%;
+    text-align: center;
+    margin-top: 2rem;
+    background: linear-gradient(to bottom right, #F49134, #FFB341);
+    margin-bottom: 20px;
+    color: #7A3E48;
+    padding-top: 20px;
+    border: 5px solid #7A3E48;
+}
+
+.form-group {
+    text-align: center;
+    max-width: 70%;
+    margin: auto;
+    background-color: #EECD86;
+    color: #7A3E48;
+    margin-bottom: 20px;
+}    
+
+button, .btn-primary, .btn-primary:active, .btn-primary:visited {
+    margin-bottom: 20px;
+    background-color: #EECD86;
+    color: #7A3E48;
+    border: 2px #7A3E48 outset;
+}
+
+.btn-primary:hover {
+    margin-bottom: 20px;
+    background-color: rgb(255, 210, 85);
+    color: #7A3E48;
+    border: 2px #7A3E48 outset;
+}
+
+.container{
+    text-align: center;
 }
 
 .jumbotron {
-    background: linear-gradient(to bottom right, #7A3E48, #B95835);
-    border: outset 7px #FFB341;
-    color: #EECD86;
     margin-top: 20px;
-}
-
-.card {
-    background: linear-gradient(to bottom right, #F49134, #FFB341);;
-    margin-bottom: 30px;
-}
-
-#train-table {
-    background: linear-gradient(to bottom left, #F49134, #FFB341);
-    margin-bottom: 30px;
-}
-
-#add-train-button {
-    background-color: #EECD86;
+    background: linear-gradient(to bottom right, #7A3E48, #B95835);
+    color: #FFB341;
+    border: 7px outset #FFB341;
 }
