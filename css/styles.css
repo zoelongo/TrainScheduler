@@ -1,14 +1,27 @@
-.panel {
-	width: 100%;
+body {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #7A3E48;
+    font-weight: bolder;
 }
 
-.jumbotron{
-	background-color: #5cb85c;
-	color: #eeeecc;
-	padding-top: 1%;
-	padding-bottom: 2%;
+.jumbotron {
+    background: linear-gradient(to bottom right, #7A3E48, #B95835);
+    border: outset 7px #FFB341;
+    color: #EECD86;
+    margin-top: 20px;
 }
 
-.panel-heading{
-	padding-top: 0.25%;
+.card {
+    background: linear-gradient(to bottom right, #F49134, #FFB341);;
+    margin-bottom: 30px;
+}
+
+#train-table {
+    background: linear-gradient(to bottom left, #F49134, #FFB341);
+    margin-bottom: 30px;
+}
+
+#add-train-button {
+    background-color: #EECD86;
 }

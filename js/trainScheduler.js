@@ -1,63 +1,98 @@
-$(document).ready(function(){
-    var config = {
-        apiKey: "IzaSyDTbzMEdKtLz4ozXj1lQcWxBitgo0ypFyM",
-        authDomain: "train-scheduler-68643.firebaseapp.com",
-        databaseURL: "https://train-scheduler-68643.firebaseio.com",
-        projectId: "train-scheduler-68643",
-        storageBucket: "train-scheduler-68643.appspot.com",
-        messagingSenderId: "934455543386"
+const firebaseConfig = {
+    apiKey: "AIzaSyDTbzMEdKtLz4ozXj1lQcWxBitgo0ypFyM",
+    authDomain: "testywesty-e0b53.firebaseapp.com",
+    databaseURL: "https://testywesty-e0b53.firebaseio.com",
+    projectId: "testywesty-e0b53",
+    storageBucket: "testywesty-e0b53.appspot.com",
+    messagingSenderId: "249824962753",
+    appId: "1:249824962753:web:a2686d86ff25194d7e4c40"
+  };
+
+  
+  firebase.initializeApp(config);
+  
+  var trainData = firebase.database();
+  
+
+  $("#add-train-btn").on("click", function(event) {
+ 
+    event.preventDefault();
+  
+    var trainName = $("#train-name-input")
+      .val()
+      .trim();
+    var destination = $("#destination-input")
+      .val()
+      .trim();
+    var firstTrain = $("#first-train-input")
+      .val()
+      .trim();
+    var frequency = $("#frequency-input")
+      .val()
+      .trim();
+  
+    var newTrain = {
+      name: trainName,
+      destination: destination,
+      firstTrain: firstTrain,
+      frequency: frequency
     };
-    firebase.initializeApp(config);
+  
+    trainData.ref().push(newTrain);
+  
+    console.log(newTrain.name);
+    console.log(newTrain.destination);
+    console.log(newTrain.firstTrain);
+    console.log(newTrain.frequency);
+  
+    alert("Train successfully added");
+  
+    $("#train-name-input").val("");
+    $("#destination-input").val("");
+    $("#first-train-input").val("");
+    $("#frequency-input").val("");
+  });
+  
+  trainData.ref().on("child_added", function(childSnapshot, prevChildKey) {
+    console.log(childSnapshot.val());
 
-    var database = firebase.database();
+    var tName = childSnapshot.val().name;
+    var tDestination = childSnapshot.val().destination;
+    var tFrequency = childSnapshot.val().frequency;
+    var tFirstTrain = childSnapshot.val().firstTrain;
+  
+    var timeArr = tFirstTrain.split(":");
+    var trainTime = moment()
+      .hours(timeArr[0])
+      .minutes(timeArr[1]);
+    var maxMoment = moment.max(moment(), trainTime);
+    var tMinutes;
+    var tArrival;
+  
+    if (maxMoment === trainTime) {
+      tArrival = trainTime.format("hh:mm A");
+      tMinutes = trainTime.diff(moment(), "minutes");
+    } else {
+      var differenceTimes = moment().diff(trainTime, "minutes");
+      var tRemainder = differenceTimes % tFrequency;
+      tMinutes = tFrequency - tRemainder;
 
-    var name;
-    var destination;
-    var firstTrain;
-    var frequency = 0;
+      tArrival = moment()
+        .add(tMinutes, "m")
+        .format("hh:mm A");
+    }
+    console.log("tMinutes:", tMinutes);
+    console.log("tArrival:", tArrival);
+  
 
-    $("#add-train").on("click", function() {
-        event.preventDefault();
-        name = $("#train-name").val().trim();
-        destination = $("#destination").val().trim();
-        firstTrain = $("#first-train").val().trim();
-        frequency = $("#frequency").val().trim();
-
-    
-        database.ref().push({
-            name: name,
-            destination: destination,
-            firstTrain: firstTrain,
-            frequency: frequency,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        });
-        $("form")[0].reset();
-    });
-
-    database.ref().on("child_added", function(childSnapshot) {
-        var nextArr;
-        var minAway;
-        var firstTrainNew = moment(childSnapshot.val().firstTrain, "hh:mm").subtract(1, "years");
-        var diffTime = moment().diff(moment(firstTrainNew), "minutes");
-        var remainder = diffTime % childSnapshot.val().frequency;
-        var minAway = childSnapshot.val().frequency - remainder;
-        var nextTrain = moment().add(minAway, "minutes");
-        nextTrain = moment(nextTrain).format("hh:mm");
-
-        $("#add-row").append("<tr><td>" + childSnapshot.val().name +
-                "</td><td>" + childSnapshot.val().destination +
-                "</td><td>" + childSnapshot.val().frequency +
-                "</td><td>" + nextTrain + 
-                "</td><td>" + minAway + "</td></tr>");
-
-        }, function(errorObject) {
-            console.log("Errors handled: " + errorObject.code);
-    });
-
-    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-        $("#name-display").html(snapshot.val().name);
-        $("#email-display").html(snapshot.val().email);
-        $("#age-display").html(snapshot.val().age);
-        $("#comment-display").html(snapshot.val().comment);
-    });
-});
+    $("#train-table > tbody").append(
+      $("<tr>").append(
+        $("<td>").text(tName),
+        $("<td>").text(tDestination),
+        $("<td>").text(tFrequency),
+        $("<td>").text(tArrival),
+        $("<td>").text(tMinutes)
+      )
+    );
+  });
+  
