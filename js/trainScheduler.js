@@ -1,15 +1,15 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyDTbzMEdKtLz4ozXj1lQcWxBitgo0ypFyM",
-    authDomain: "testywesty-e0b53.firebaseapp.com",
-    databaseURL: "https://testywesty-e0b53.firebaseio.com",
-    projectId: "testywesty-e0b53",
-    storageBucket: "testywesty-e0b53.appspot.com",
-    messagingSenderId: "249824962753",
-    appId: "1:249824962753:web:a2686d86ff25194d7e4c40"
-  };
+var firebaseConfig = {
+  apiKey: "AIzaSyDTbzMEdKtLz4ozXj1lQcWxBitgo0ypFyM",
+  authDomain: "testywesty-e0b53.firebaseapp.com",
+  databaseURL: "https://testywesty-e0b53.firebaseio.com",
+  projectId: "testywesty-e0b53",
+  storageBucket: "testywesty-e0b53.appspot.com",
+  messagingSenderId: "249824962753",
+  appId: "1:249824962753:web:a2686d86ff25194d7e4c40"
+};
 
   
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
   
   var trainData = firebase.database();
   

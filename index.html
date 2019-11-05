@@ -8,9 +8,9 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script> -->
 
 </head>
 
@@ -33,7 +33,7 @@
             Current Train Schedule
           </div>
           <div class="card-body">
-            
+
             <table class="table table-hover" id="train-table">
 
               <thead>
@@ -96,7 +96,27 @@
 
   </div>
 
-  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDTbzMEdKtLz4ozXj1lQcWxBitgo0ypFyM",
+    authDomain: "testywesty-e0b53.firebaseapp.com",
+    databaseURL: "https://testywesty-e0b53.firebaseio.com",
+    projectId: "testywesty-e0b53",
+    storageBucket: "testywesty-e0b53.appspot.com",
+    messagingSenderId: "249824962753",
+    appId: "1:249824962753:web:a2686d86ff25194d7e4c40"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
   <script src="js/trainScheduler.js"></script>
 
 </body>
